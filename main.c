@@ -48,30 +48,7 @@ void _start(void) {
   real_exit(0);
 }
 
-__asm__(
-".intel_syntax noprefix\n" 
-".global real_write\n"
-".global real_read\n"
-".global real_chdir\n"
-".global real_fork\n"
-".global real_exit\n"
-".global real_execve\n"
-"real_write: mov rax, 1; syscall; ret\n" 
-"real_read: mov rax, 0; syscall; ret\n" 
-"real_chdir: mov rax, 80; syscall; ret\n" 
-"real_fork: mov rax, 57; syscall; ret\n"
-"real_exit:  mov rax, 60; syscall; ret\n"
-"real_execve: mov rax, 59; syscall; ret\n"
-"real_wait:\n"
-"    mov rdi, -1\n"    
-"    xor rsi, rsi\n"  
-"    xor rdx, rdx\n" 
-"    xor r10, r10\n" 
-"    mov rax, 61\n"
-"    syscall\n"
-"    ret\n"
-".att_syntax\n"
-);
+
 
 int real_strcmp(const char *s1, const char *s2) {
   while (*s1 && (*s1 == *s2)) {
