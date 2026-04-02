@@ -1,9 +1,10 @@
-CC = gcc
-CFLAGS = -Os -nostdlib -static -fno-asynchronous-unwind-tables -fno-stack-protector
-LDFLAGS = -Wl,--build-id=none -Wl,-nmagic -s
+CC = clang
+CFLAGS = -Wall -Wextra -O2
 
-shot: main.c sys.S
-	$(CC) $(CFLAGS) main.c syscalls.s $(LDFLAGS) -o atsh
+all: main
+
+main: main.c
+	@$(CC) $(CFLAGS) main.c -o main
 
 clean:
-	rm -f atsh
+	rm -f main
