@@ -1,10 +1,9 @@
-CC = clang
-CFLAGS = -Wall -Wextra -O2
+CC = gcc
+CFLAGS = -Os -nostdlib -static -fno-asynchronous-unwind-tables -fno-stack-protector
+LDFLAGS = -Wl,--build-id=none -Wl,-nmagic -s
 
-all: main
-
-main: main.c
-	@$(CC) $(CFLAGS) main.c -o main
+atsh: main.c calls.S
+	$(CC) $(CFLAGS) main.c calls.S $(LDFLAGS) -o atsh
 
 clean:
-	rm -f main
+	rm -f atsh

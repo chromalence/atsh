@@ -6,6 +6,7 @@
 .global real_fork
 .global real_exit
 .global real_execve
+.global real_wait
 real_write: mov rax, 1; syscall; ret
 real_read: mov rax, 0; syscall; ret
 real_chdir: mov rax, 80; syscall; ret
